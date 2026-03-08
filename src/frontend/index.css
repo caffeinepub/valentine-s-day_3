@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Playfair Display (Display) ── */
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-Italic-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Figtree (Body) ── */
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Valentine palette — warm, romantic, candlelit */
+    /* Deep crimson primary */
+    --primary: 0.42 0.19 15;
+    --primary-foreground: 0.97 0.02 50;
+
+    /* Background: warm cream */
+    --background: 0.97 0.015 60;
+    --foreground: 0.22 0.04 20;
+
+    /* Card: soft blush white */
+    --card: 0.99 0.008 50;
+    --card-foreground: 0.22 0.04 20;
+
+    /* Popover */
+    --popover: 0.99 0.008 50;
+    --popover-foreground: 0.22 0.04 20;
+
+    /* Secondary: dusty rose */
+    --secondary: 0.88 0.06 15;
+    --secondary-foreground: 0.32 0.08 20;
+
+    /* Muted: blush tint */
+    --muted: 0.92 0.03 20;
+    --muted-foreground: 0.52 0.04 20;
+
+    /* Accent: soft gold */
+    --accent: 0.85 0.09 70;
+    --accent-foreground: 0.25 0.06 35;
+
+    /* Destructive */
+    --destructive: 0.52 0.22 15;
+    --destructive-foreground: 0.97 0.02 50;
+
+    /* Borders: warm rose */
+    --border: 0.85 0.05 20;
+    --input: 0.88 0.04 20;
+    --ring: 0.42 0.19 15;
+
+    /* Valentine-specific tokens */
+    --crimson: 0.42 0.19 15;
+    --dusty-rose: 0.72 0.12 10;
+    --soft-gold: 0.80 0.12 70;
+    --warm-cream: 0.97 0.015 60;
+    --deep-burgundy: 0.28 0.12 15;
+
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    --sidebar: 0.97 0.015 60;
+    --sidebar-foreground: 0.22 0.04 20;
+    --sidebar-primary: 0.42 0.19 15;
+    --sidebar-primary-foreground: 0.97 0.02 50;
+    --sidebar-accent: 0.88 0.06 15;
+    --sidebar-accent-foreground: 0.32 0.08 20;
+    --sidebar-border: 0.85 0.05 20;
+    --sidebar-ring: 0.42 0.19 15;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    background-color: oklch(var(--warm-cream));
+  }
+}
+
+/* ── Floating Hearts Animation ── */
+@keyframes float-heart {
+  0% {
+    transform: translateY(100vh) scale(0) rotate(-15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-20vh) scale(1) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-heart-sway {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px oklch(0.65 0.18 15 / 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px oklch(0.65 0.18 15 / 0.7));
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Heart Container ── */
+.hearts-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -10%;
+  animation: float-heart linear infinite;
+}
+
+.floating-heart svg {
+  animation: float-heart-sway ease-in-out infinite;
+}
+
+/* Individual heart configs */
+.heart-1 { left: 8%;  animation-duration: 9s;  animation-delay: 0s;   }
+.heart-2 { left: 18%; animation-duration: 12s; animation-delay: 1.5s; }
+.heart-3 { left: 28%; animation-duration: 8s;  animation-delay: 3s;   }
+.heart-4 { left: 40%; animation-duration: 11s; animation-delay: 0.8s; }
+.heart-5 { left: 52%; animation-duration: 7s;  animation-delay: 2.3s; }
+.heart-6 { left: 62%; animation-duration: 13s; animation-delay: 4s;   }
+.heart-7 { left: 74%; animation-duration: 10s; animation-delay: 1s;   }
+.heart-8 { left: 84%; animation-duration: 8.5s;animation-delay: 3.5s; }
+.heart-9 { left: 93%; animation-duration: 11s; animation-delay: 0.3s; }
+
+.heart-1 svg { animation-duration: 3s;  }
+.heart-2 svg { animation-duration: 4s;  }
+.heart-3 svg { animation-duration: 2.5s;}
+.heart-4 svg { animation-duration: 5s;  }
+.heart-5 svg { animation-duration: 3.5s;}
+.heart-6 svg { animation-duration: 4.5s;}
+.heart-7 svg { animation-duration: 2.8s;}
+.heart-8 svg { animation-duration: 3.8s;}
+.heart-9 svg { animation-duration: 4.2s;}
+
+/* ── Hero Overlay ── */
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    oklch(0.18 0.08 15 / 0.55) 0%,
+    oklch(0.25 0.10 15 / 0.40) 40%,
+    oklch(0.18 0.08 15 / 0.70) 100%
+  );
+}
+
+/* ── Gold shimmer text ── */
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.75 0.10 70) 0%,
+    oklch(0.88 0.14 75) 30%,
+    oklch(0.80 0.12 65) 50%,
+    oklch(0.88 0.14 75) 70%,
+    oklch(0.75 0.10 70) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ── Countdown digit ── */
+.countdown-digit {
+  background: oklch(0.99 0.008 50 / 0.15);
+  border: 1px solid oklch(0.99 0.008 50 / 0.30);
+  backdrop-filter: blur(8px);
+}
+
+/* ── Card hover ── */
+.note-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.note-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px oklch(0.42 0.19 15 / 0.18);
+}
+
+/* ── Animations ── */
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease both;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* ── Section divider ── */
+.petal-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.petal-divider::before,
+.petal-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    oklch(var(--dusty-rose) / 0.5),
+    transparent
+  );
+}
