@@ -143,8 +143,11 @@ export default function HeroSection() {
         {/* Decorative top */}
         <div className="animate-fade-in-up mb-6 flex items-center justify-center gap-3">
           <HeartSVG size={18} opacity={0.9} color="oklch(0.80 0.12 70)" />
-          <span className="text-white/80 font-body text-sm uppercase tracking-[0.3em] font-medium">
-            February 14
+          <span
+            id="4zxe7t"
+            className="text-white/80 font-body text-sm uppercase tracking-[0.3em] font-medium"
+          >
+            For My Loving Pramu
           </span>
           <HeartSVG size={18} opacity={0.9} color="oklch(0.80 0.12 70)" />
         </div>
@@ -153,13 +156,15 @@ export default function HeroSection() {
         <h1 className="animate-fade-in-up delay-100 font-display text-5xl md:text-7xl lg:text-8xl font-bold italic leading-tight mb-4">
           <span className="gold-shimmer">Happy Valentine's</span>
           <br />
-          <span className="text-white">Day</span>
+          <span id="1hqroxm" className="text-white">
+            Day, Pramu
+          </span>
         </h1>
 
         {/* Subtitle */}
         <p className="animate-fade-in-up delay-200 font-body text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-lg mx-auto">
-          Celebrate love, share your heart — because every moment with you is a
-          gift.
+          Every moment with you is a treasure, every heartbeat is yours — with
+          all my love, always and forever.
         </p>
 
         {/* Countdown */}
