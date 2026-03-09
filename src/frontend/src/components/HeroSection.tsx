@@ -157,7 +157,7 @@ export default function HeroSection() {
           <span className="gold-shimmer">Happy Valentine's</span>
           <br />
           <span id="1hqroxm" className="text-white">
-            Day, Pramu
+            Day
           </span>
         </h1>
 
